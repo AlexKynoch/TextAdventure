@@ -1,11 +1,13 @@
+
 // Define Object
+
+let state = true;
 
 class Room {
     constructor(name, description) {
         this._name = name;
         this._description = description;
         this._linkedRooms = {};
-
     }
 
     get name() {
@@ -25,7 +27,6 @@ class Room {
     }
 
     //   create describe method
-
     describe() {
         return "You are in the " + this._name + " where " + this._description;
     }
@@ -123,6 +124,8 @@ class Item {
 
 
 }
+
+console.log(Item.state);
 // Enemy inherits everything from Character
 class Enemy extends Character {
     constructor(name, description, conversation, weakness) {
@@ -152,30 +155,63 @@ function displayRoomInfo(room) {  // this method is outside the class as is free
     switch (currentRoom) {
         case Kitchen:
             document.getElementById("textarea2").innerHTML = Key.describe();
+            let firstOptionKitchen = document.getElementById("option1").innerHTML = "1. take the key";
+            let secondOptionKitchen=document.getElementById("option2").innerHTML = "";
+            let thirdOptionKitchen=document.getElementById("option3").innerHTML = "";
+
             break;
         case Garden:
             document.getElementById("textarea2").innerHTML = Cricket.describe();
+            let firstOptionGarden = document.getElementById("option1").innerHTML = "1. take the cricket";
+            let secondOptionGarden=document.getElementById("option2").innerHTML = "";
+            let thirdOptionGarden=document.getElementById("option3").innerHTML = "";
+
             break;
         case Ballroom:
             document.getElementById("textarea2").innerHTML = Net.describe();
+            let firstOptionBallroom = document.getElementById("option1").innerHTML = "1. have a dance";
+            let secondOptionBallroom=document.getElementById("option2").innerHTML = "2. take the net";
+            let thirdOptionBallroom=document.getElementById("option3").innerHTML = "";
             break;
         case Office:
             document.getElementById("textarea2").innerHTML = Safe.describe() + " " + Pete.talk();
+            let firstOptionOffice = document.getElementById("option1").innerHTML = "1. talk to pete";
+            let secondOptionOffice=document.getElementById("option2").innerHTML = "2. fight with pete";
+            let thirdOptionOffice=document.getElementById("option3").innerHTML = "";
             break;
         case Bathroom:
             document.getElementById("textarea2").innerHTML = Spider.describe();
+            let firstOptionBathroom = document.getElementById("option1").innerHTML = "1. pick up the cute tarantula";
+            let secondOptionBathroom = document.getElementById("option2").innerHTML = "";
+            let thirdOptionBathroom = document.getElementById("option3").innerHTML = "";
             break;
         case Library:
             document.getElementById("textarea2").innerHTML = Flyer.describe();
+            let firstOptionLibrary = document.getElementById("option1").innerHTML = "1. take the flyer and read it";
+            let secondOptionLibrary=document.getElementById("option2").innerHTML = "";
+            let thirdOptionibrary=document.getElementById("option3").innerHTML = "";
             break;
         case Entrance:
             document.getElementById("textarea2").innerHTML = Note.describe();
+            let firstOptionEntrance = document.getElementById("option1").innerHTML = "1. take note";
+            // if (firstOptionEntrance ="1. take note"){
+            //     let hide = getElementById("option2");
+            //     hide.style.display ="none";
+            // }else{
+            //     hide.style.display ="block";
+            // }
             break;
         case Hall:
-            document.getElementById("textarea2").innerHTML = FloorPlan.describe()+" "+Brian.talk();
+            document.getElementById("textarea2").innerHTML = FloorPlan.describe() + " " + Brian.talk();
+            let firstOptionHall = document.getElementById("option1").innerHTML = "1. look at floor plan";
+            let secondOptionHall = document.getElementById("option2").innerHTML = "2. Punch Brian";
+            let thirdOptionHall = document.getElementById("option2").innerHTML = "2. talk to Brian";
             break;
         case DiningRoom:
-            document.getElementById("textarea2").innerHTML = CandleStick.describe()+" "+SuitOfArmour.describe();
+            document.getElementById("textarea2").innerHTML = CandleStick.describe() + " " + SuitOfArmour.describe();
+            let firstOptionDining = document.getElementById("option1").innerHTML = "1. look at candlestick";
+            let secondOptionDining = document.getElementById("option2").innerHTML = "2. take candlestick";
+            let thirdOptionDining = document.getElementById("option3").innerHTML = "1. whack suit of armour with candlestick";
             break;
         default:
             // code block
@@ -192,6 +228,12 @@ document.addEventListener("keydown", function (event) {
             currentRoom = currentRoom.move(command)
             displayRoomInfo(currentRoom);
             // return(currentRoom);
+            // }else if{
+            //     command = document.getElementById("").value;
+            // const options = ["1", "2"]
+
+            //     currentOption = currentOption.move(command)
+            //     displayRoomInfo(currentRoom);
         } else {
             document.getElementById("usertext").value = ""
             alert("Thats is not a valid command please try again")
@@ -228,7 +270,7 @@ const Net = new Item("net", "the net has a fine mesh for catching fish!");
 const Safe = new Item("safe", "the safe is locked! ");
 const Note = new Item("note", "its a twenty pound note, just laying on the steps unnoticed!");
 const FloorPlan = new Item("floor plan", "pictures that are framed on the wall")
-const CandleStick = new Item("candle stick","it looks heavy");
+const CandleStick = new Item("candle stick", "it looks heavy");
 
 //link item to room
 
@@ -262,6 +304,7 @@ console.log(Office.Item);
 
 Hall.linkRoom("north", Kitchen);
 Hall.linkRoom("east", Library);
+Hall.linkRoom("south",Entrance);
 Hall.linkRoom("west", Ballroom);
 
 Kitchen.linkRoom("east", DiningRoom);
@@ -303,6 +346,26 @@ function startGame() {
     console.log(currentRoom);
 
 }
+
+function reply_click(clicked_id) {
+    alert(clicked_id);
+}
+
+
+// function myFunction() {
+//     document.getElementById("demo").innerHTML = "Hello World";
+//   }
+
+//   function myFunction2() {
+//     document.getElementById("demo2").innerHTML = "Hello World";
+//   }
+// document.getElementById("demo").addEventListener("click", myFunction);
+
+// function myFunction() {
+//   document.getElementById("demo").innerHTML = "YOU CLICKED ME!";
+// }
+
+
 // console.log(Flyer.describe);
 // document.getElementById("textarea2").innerHTML = Key.describe();
 //console.log(currentRoom);
